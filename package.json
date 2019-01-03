@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BrotherKristoph/dwarvish-translator/issues"
   },
-  "homepage": "https://github.com/BrotherKristoph/dwarvish-translator#readme"
+  "homepage": "https://github.com/BrotherKristoph/dwarvish-translator#readme",
+  "dependencies": {
+    "google-translate": "^2.2.0"
+  }
 }
