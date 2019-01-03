@@ -33,6 +33,8 @@ const hrToDr = {
     'ž': 'ᛉᚺ'
 };
 
+const googleTranslate = require('google-translate')(process.env.TRANSLATE_API_KEY);
+
 function transliterate(hrString) {
     let lowerCase = hrString.toLowerCase();
     let drString = '',
@@ -67,8 +69,14 @@ function transliterate(hrString) {
     return drString;
 }
 
-function wordByWord(hrSentence) {
-    let hrWords = hrSentence.split(' ');
+function translateToHr(text, done) {
+    googleTranslate.translate(text, 'hr', done);
 }
 
-console.log(transliterate('pohvaliti bahamut'));
+translateToHr('Hello World', (err, translation) => {
+    if (translation) {
+        console.log(transliterate(translation.translatedText));
+    } else if (err) {
+        console.err(err);
+    }
+});
