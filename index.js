@@ -33,7 +33,7 @@ const hrToDr = {
     'ž': 'ᛉᚺ'
 };
 
-const googleTranslate = require('google-translate')('AIzaSyCsH34LZGJJEGqbzoYz1awuFJ6eIh3hu8E');
+const googleTranslate = require('google-translate')('nope');
 
 function transliterateToDwarvish(hrString) {
     let lowerCase = hrString.toLowerCase();
