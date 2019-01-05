@@ -33,9 +33,9 @@ const hrToDr = {
     'ž': 'ᛉᚺ'
 };
 
-const googleTranslate = require('google-translate')(process.env.TRANSLATE_API_KEY);
+const googleTranslate = require('google-translate')('AIzaSyCsH34LZGJJEGqbzoYz1awuFJ6eIh3hu8E');
 
-function transliterate(hrString) {
+function transliterateToDwarvish(hrString) {
     let lowerCase = hrString.toLowerCase();
     let drString = '',
         i = 0,
@@ -70,13 +70,21 @@ function transliterate(hrString) {
 }
 
 function translateToHr(text, done) {
-    googleTranslate.translate(text, 'hr', done);
+    googleTranslate.translate(text, 'hr', (err, translation) => {
+        if (translation) {
+            done(translation.translatedText);
+        } else {
+            console.err(err);
+        }
+    });
 }
 
-translateToHr('Hello World', (err, translation) => {
-    if (translation) {
-        console.log(transliterate(translation.translatedText));
-    } else if (err) {
-        console.err(err);
-    }
-});
+function translateToDwarvish(text, done) {
+    translateToHr(text, translatedText => {
+        done(transliterateToDwarvish(translatedText));
+    });
+}
+
+module.exports = {
+    translateToDwarvish
+};

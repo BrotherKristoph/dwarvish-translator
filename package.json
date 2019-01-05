@@ -4,6 +4,8 @@
   "description": "Translator for English into Dwarvish (Elder Futhark)",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build:js",
+    "build:js": "browserify index.js --standalone translateBundle > build/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +20,8 @@
   "homepage": "https://github.com/BrotherKristoph/dwarvish-translator#readme",
   "dependencies": {
     "google-translate": "^2.2.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.3"
   }
 }
